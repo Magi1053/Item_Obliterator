@@ -40,6 +40,19 @@ repositories {
             includeGroup "dev.architectury"
         }
     }
+
+    maven {
+        name = "BlameJared"
+        url = "https://maven.blamejared.com"
+    }
+
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 // Mojang ships Java 21 to end users starting in 1.20.5, so mods should target Java 21.
@@ -139,11 +152,11 @@ dependencies {
     //compileOnly "dev.ftb.mods:ftb-chunks-neoforge:2101.1.9"
     //runtimeOnly "dev.ftb.mods:ftb-chunks-neoforge:2101.1.9"
 
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
-    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
-    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+    // Recipe viewers (optional at runtime). EMI: full jar has API. JEI: API vs full game jar.
+    compileOnly "maven.modrinth:emi:${emi_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    localRuntime "maven.modrinth:emi:${emi_version}"
+    localRuntime "maven.modrinth:jei:${jei_version}"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
