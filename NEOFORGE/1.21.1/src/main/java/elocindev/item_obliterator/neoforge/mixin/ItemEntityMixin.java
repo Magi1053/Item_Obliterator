@@ -16,8 +16,10 @@ public class ItemEntityMixin {
     @Inject(at = @At("TAIL"), method = "readAdditionalSaveData", cancellable = true)
     public void item_obliterator$discardItemEntities(CompoundTag nbt, CallbackInfo info) {
         ItemStack item = ((ItemEntity)(Object)this).getItem();
-        
-        if (Utils.isDisabled(item)) {
+        var self = (ItemEntity)(Object)this;
+        var registries = self.level() != null ? self.registryAccess() : null;
+
+        if (Utils.isDisabled(item, registries)) {
             ((ItemEntity)(Object)this).remove(RemovalReason.DISCARDED);
         }
     }

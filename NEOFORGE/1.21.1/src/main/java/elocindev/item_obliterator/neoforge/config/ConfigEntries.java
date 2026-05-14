@@ -40,10 +40,20 @@ public class ConfigEntries {
 	@Comment("Removes an item if it contains certain nbt tag. If the whole entry (or expression) is present, the item gets removed.")
 	@Comment("Use with caution! This is a very expensive operation and can cause lag if you have a lot of items blacklisted.")
 	@Comment("	")
+	@Comment("	 On Minecraft 1.21+, item data often lives in data components (not only minecraft:custom_data).")
+	@Comment("	 When blacklisted_nbt_match_stack_snbt is true, each pattern is also matched against the full stack SNBT")
+	@Comment("	 produced by ItemStack#save (same representation as /give and creative tooltips), so substrings like")
+	@Comment("	 template_id:\"ender_hook\" or mod component keys in bracket form can match.")
+	@Comment("	")
 	@Comment("	 Example to disable a regeneration potion: Potion:\"minecraft:regeneration\"")
 	@Comment("	")
 	@Comment("	 You can also use regular expressions by starting the value with !")
 	public List<String> blacklisted_nbt = new ArrayList<>() {{}};
+
+	@Comment("-----------------------------------------------------------")
+	@Comment("If true, each blacklisted_nbt entry is matched against the full item stack SNBT (components + count), not only CustomData.")
+	@Comment("Disable for legacy packs that relied on matching only the inner custom_data tag string, or if you need slightly less work per check.")
+	public boolean blacklisted_nbt_match_stack_snbt = true;
 
 	@Comment("-----------------------------------------------------------")
 
