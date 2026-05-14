@@ -68,7 +68,7 @@ public class ItemObliterator {
     public void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (!(event.getEntity() instanceof ItemEntity item)) return;
 
-        if (!item.getItem().isEmpty() && Utils.isDisabled(item.getItem())) {
+        if (!item.getItem().isEmpty() && Utils.isDisabled(item.getItem(), item.registryAccess())) {
             item.remove(Entity.RemovalReason.DISCARDED);
         }
     }

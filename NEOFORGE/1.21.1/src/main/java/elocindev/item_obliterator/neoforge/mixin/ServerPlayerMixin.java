@@ -30,7 +30,7 @@ public class ServerPlayerMixin {
         ItemStack item = ((ServerPlayer)(Object)this).getInventory().getItem(i);
         if (item == null || item.isEmpty()) return;
 
-        if (Utils.isDisabled(item)) {
+        if (Utils.isDisabled(item, ((ServerPlayer)(Object)this).registryAccess())) {
             item.setCount(0);
             ((ServerPlayer)(Object)this).sendSystemMessage(Component.literal("This item is disabled."), true);
         }
