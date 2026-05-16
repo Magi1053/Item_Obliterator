@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
@@ -111,7 +110,7 @@ public final class LootTableStripper {
 
     private static Optional<LootPoolEntryContainer> filterContainer(LootPoolEntryContainer container, AtomicBoolean changed) {
         if (container instanceof LootItem lootItem) {
-            if (Utils.isDisabled(new ItemStack(((IOLootItemAccess) (Object) lootItem).io$getItem()))) {
+            if (Utils.isDisabled(((IOLootItemAccess) (Object) lootItem).io$getItem().value())) {
                 changed.set(true);
                 return Optional.empty();
             }

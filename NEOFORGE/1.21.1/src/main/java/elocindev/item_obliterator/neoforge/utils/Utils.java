@@ -41,6 +41,14 @@ public class Utils {
         return false;
     }
 
+    /**
+     * Item-only blacklist (no stack components / NBT). Use from loot table stripping; runtime stacks should use {@link #isDisabled(ItemStack)}.
+     */
+    public static boolean isDisabled(Item item) {
+        if (item == null || item == Items.AIR) return false;
+        return isDisabled(getItemId(item));
+    }
+
     public static boolean isDisabled(String itemid) {
         if (itemid.equals("minecraft:air")) return false;
 
