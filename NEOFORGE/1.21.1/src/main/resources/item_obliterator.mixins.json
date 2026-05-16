@@ -8,7 +8,12 @@
       "ServerPlayerMixin",
       "RecipeDisablingMixin",
       "ItemEntityMixin",
-      "VillagerTradeMixin"
+      "VillagerTradeMixin",
+      "access.IOLootTableAccess",
+      "access.IOLootPoolAccess",
+      "access.IOCompositeEntryBaseAccess",
+      "access.IOLootItemAccess",
+      "access.IOLootPoolEntryContainerAccess"
     ],
     "client": [
     ],

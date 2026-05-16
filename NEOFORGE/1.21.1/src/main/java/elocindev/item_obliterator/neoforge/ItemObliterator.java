@@ -3,6 +3,7 @@ package elocindev.item_obliterator.neoforge;
 import com.mojang.logging.LogUtils;
 
 import elocindev.item_obliterator.neoforge.config.ConfigEntries;
+import elocindev.item_obliterator.neoforge.event.LootTableLoadHandler;
 import elocindev.item_obliterator.neoforge.event.VillagerTradeEvent;
 import elocindev.item_obliterator.neoforge.event.WandererTradeEvent;
 import elocindev.item_obliterator.neoforge.utils.Utils;
@@ -43,6 +44,7 @@ public class ItemObliterator {
 
         NeoForge.EVENT_BUS.register(VillagerTradeEvent.class);
         NeoForge.EVENT_BUS.register(WandererTradeEvent.class);
+        NeoForge.EVENT_BUS.register(LootTableLoadHandler.class);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
